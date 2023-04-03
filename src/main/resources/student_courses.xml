@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<student_courses>
+    <student_course>
+        <student_id>MT2022067</student_id>
+        <course_id>CS 839</course_id>
+    </student_course>
+    <student_course>
+        <student_id>MT2022067</student_id>
+        <course_id>CS 605</course_id>
+    </student_course>
+    <student_course>
+        <student_id>MT2022079</student_id>
+        <course_id>CS 605</course_id>
+    </student_course>
+    <student_course>
+        <student_id>MT2022079</student_id>
+        <course_id>CS 839</course_id>
+    </student_course>
+    <student_course>
+        <student_id>MT2022067</student_id>
+        <course_id>CS 511</course_id>
+    </student_course>
+    <student_course>
+        <student_id>MT2022079</student_id>
+        <course_id>CS 511</course_id>
+    </student_course>
+</student_courses>

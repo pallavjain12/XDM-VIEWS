@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<courses>
+    <course>
+        <id>CS 605</id>
+        <name>Data Modeling</name>
+    </course>
+    <course>
+        <id>CS 816</id>
+        <name>Software Production Engineering</name>
+    </course>
+    <course>
+        <id>CS 837</id>
+        <name>Healthcare Application Development</name>
+    </course>
+    <course>
+        <id>CS 839</id>
+        <name>NoSQL Systems</name>
+    </course>
+</courses>

@@ -1,0 +1,24 @@
+create database xdmviews;
+use xdmviews;
+create table students ( id varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, email varchar(255) not null, mobile varchar(255) not null, branch varchar(255) not null, primary key(id));
+insert into students (id, first_name, last_name, email, mobile, branch, dob) values ("MT2022074", "pradhyuman", "joshi", "pradhyuman.joshi@iiitb.ac.in", "8349163003", "cse", "2000-07-18");
+insert into students (id, first_name, last_name, email, mobile, branch, dob) values ("MT2022072", "Pratham", "Rathore", "prathamkumar.rathore@iiitb.ac.in", "9425129427", "cse", "1999-02-14");
+insert into students (id, first_name, last_name, email, mobile, branch, dob) values ("MT2022078", "Prasad", "Magdum", "prasad.magdum@iiitb.ac.in", "9406971017", "cse", "1999-11-04");
+insert into students (id, first_name, last_name, email, mobile, branch, dob) values ("MT2022080", "Prateek", "Chimwal", "prateek.chimwal@iiitb.ac.in", "8349466707", "cse", "1999-03-29");
+
+create table courses ( id varchar(255) not null, name varchar(255) not null, primary key(id));
+
+insert into courses (id, name) values ("CS 704", "Topic in Computability and Learning");
+insert into courses (id, name) values ("AI 829", "Natural Language Processing");
+insert into courses (id, name) values ("CS 825", "Visual Recognition");
+insert into courses (id, name) values ("CS 831", "Few Short Learning");
+insert into courses (id, name) values ("PS 104", "Basic Electronics");
+insert into courses (id, name) values ("CS 511", "Algorithms");
+
+
+create table student_courses ( id int auto_increment, student_id varchar(255), course_id varchar(255), primary key(id));
+insert into student_courses ( student_id, course_id) values ( "MT2022082", "CS 831");
+insert into student_courses ( student_id, course_id) values ( "MT2022082", "PS 104");
+insert into student_courses ( student_id, course_id) values ( "MT2022080", "CS 837");
+insert into student_courses ( student_id, course_id) values ( "MT2022082", "CS 816");
+
