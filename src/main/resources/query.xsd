@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="xdmview">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="data" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice minOccurs="1">
+                            <xs:element maxOccurs="unbounded" name="mysql">
+                                <xs:complexType>
+                                    <xs:attribute name="url" type="xs:string" use="required" />
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                    <xs:attribute name="username" type="xs:string" use="required" />
+                                    <xs:attribute name="password" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="json">
+                                <xs:complexType>
+                                    <xs:attribute name="url" type="xs:string" use="required" />
+                                    <xs:attribute name="local" type="xs:boolean" use="required" />
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="xml">
+                                <xs:complexType>
+                                    <xs:attribute name="url" type="xs:string" use="required" />
+                                    <xs:attribute name="local" type="xs:boolean" use="required" />
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="view">
+                    <xs:complexType>
+                        <xs:choice minOccurs="1">
+                            <xs:element maxOccurs="unbounded" name="base">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="field">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="conditions" type="xs:string" use="required" />
+                                                        <xs:attribute name="selected" type="xs:boolean" use="required" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                    <xs:attribute name="source" type="xs:string" use="required" />
+                                    <xs:attribute name="table" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="operation">
+                    <xs:complexType>
+                        <xs:choice minOccurs="0">
+                            <xs:element name="union">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="2" maxOccurs="unbounded" name="source" type="xs:string" />
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="join">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="2" maxOccurs="2" name="source">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="on" type="xs:string" use="required" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

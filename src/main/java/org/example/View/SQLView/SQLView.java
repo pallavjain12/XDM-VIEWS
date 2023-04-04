@@ -26,10 +26,13 @@ public class SQLView extends View {
         haveCredentials = true;
     }
 
-    public void getData() throws NoURLFoundException, NoCredentialsFoundForURL, ClassNotFoundException, SQLException {
+    public void loadData() throws NoURLFoundException, NoCredentialsFoundForURL, ClassNotFoundException, SQLException {
         if (!haveURL)   throw new NoURLFoundException();
         if (!haveCredentials) throw new NoCredentialsFoundForURL(URL);
+
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(URL, USERID, PASS);
+
+
     }
 }
