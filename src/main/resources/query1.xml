@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xdmview name="myView">
 
-<!--    <source type="mysql" url="jdbc:mysql://localhost:3306/market" name="market" username="root" password="1234" />-->
-<!--    <source type="mysql" url="jdbc:mysql://localhost:3306/market" name="shop" username="root" password="1234" />-->
-<!--    <source type="json" url="./test.json" name="test" />-->
-
     <data>
         <mysql url="jdbc:mysql://localhost:3306/market" name="market" username="root" password="1234" />
-        <mysql url="jdbc:mysql://localhost:3306/market" name="market" username="root" password="1234" />
+        <mysql url="jdbc:mysql://localhost:3306/market" name="sho" username="root" password="1234" />
         <json url="./test.json" local="true" name="test" />
         <xml url="/home/albus/Documents/students.xml" local="true" name="pupils" />
     </data>
 
     <view>
-        <base name="market_data" source="market" table="students">
+        <mysql_base name="market_data" source="market" table="students">
             <field conditions="" selected="true">first_name</field>
             <field conditions="" selected="false">last_name</field>
             <field conditions="" selected="true">email</field>
-        </base>
+        </mysql_base>
 
-        <base name="shop_data" source="shop" table="students">
+        <mysql_base name="shop_data" source="shop" table="students">
             <field conditions="" selected="true">first_name</field>
             <field conditions="" selected="false">last_name</field>
             <field conditions="" selected="true">email</field>
-        </base>
+        </mysql_base>
 
-        <base name="test_data" source="test" table="students">
+        <json_base name="test_data" source="test">
             <field conditions="" selected="true">first_name</field>
             <field conditions="" selected="false">last_name</field>
             <field conditions="" selected="true">email</field>
-        </base>
+        </json_base>
     </view>
 
     <operation>
