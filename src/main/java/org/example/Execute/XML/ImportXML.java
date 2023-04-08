@@ -1,7 +1,5 @@
 package org.example.Execute.XML;
 
-import java.io.InputStream;
-
 public class ImportXML {
     String pathToXML;
     boolean isLocal;
