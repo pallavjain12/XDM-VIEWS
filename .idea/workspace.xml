@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a523e55-2a03-4eb0-adc8-fe32934e6a0e" name="Changes" comment="Created Structured directories and files and started implementing SQLView.">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/query.xsd" afterDir="false" />
+    <list default="true" id="9a523e55-2a03-4eb0-adc8-fe32934e6a0e" name="Changes" comment="Added files. Started implementation of SQLView class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Source/SQLSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Execute/XML/ImportXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Execute/XML/ImportXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Execute/XML/XMLException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Execute/XML/XMLException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/View/SQLView/SQLView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/View/SQLView/SQLView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/query1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/query1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/View/SQLView/SQLViewException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/View/SQLView/SQLViewException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="package-info" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -43,19 +44,61 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package" />
+      <command value="mvn clean" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.SQLView">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="XDM-VIEWS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SQLView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.View.SQLView.SQLView" />
+      <module name="XDM-VIEWS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.View.SQLView.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SQLView" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -66,7 +109,14 @@
       <updated>1680535154833</updated>
       <workItem from="1680535156101" duration="8309000" />
       <workItem from="1680581305523" duration="2860000" />
-      <workItem from="1680596286417" duration="10215000" />
+      <workItem from="1680596286417" duration="11730000" />
+      <workItem from="1680665339411" duration="356000" />
+      <workItem from="1680672893452" duration="1818000" />
+      <workItem from="1680690878192" duration="1891000" />
+      <workItem from="1680755268165" duration="5000" />
+      <workItem from="1680886708945" duration="4413000" />
+      <workItem from="1680897049012" duration="8037000" />
+      <workItem from="1680938156027" duration="3662000" />
     </task>
     <task id="LOCAL-00001" summary="Create XML and SQL databases.">
       <created>1680542573793</created>
@@ -89,7 +139,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680598158266</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added query schema and readme file.">
+      <created>1680633926003</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680633926003</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added files. Started implementation of SQLView class">
+      <created>1680900118105</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680900118105</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +173,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create XML and SQL databases." />
     <MESSAGE value="Created Structured directories and files and started implementing SQLView." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Structured directories and files and started implementing SQLView." />
+    <MESSAGE value="Added query schema and readme file." />
+    <MESSAGE value="Added files. Started implementation of SQLView class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added files. Started implementation of SQLView class" />
   </component>
 </project>
