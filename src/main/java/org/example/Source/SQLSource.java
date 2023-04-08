@@ -12,7 +12,7 @@ public class SQLSource {
     private Set<String> tables;
     private Connection connection;
     public SQLSource(String URL, String userid, String password) throws SQLException {
-        this.URL = "jdbc:mysql://" + URL;
+        this.URL = URL;
         this.USERID = userid;
         this.PASSWORD = password;
 
@@ -29,7 +29,7 @@ public class SQLSource {
                 System.out.println("checkpoint1");
                 System.out.flush();
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                this.connection = DriverManager.getConnection(URL, USERID, PASSWORD);
+                this.connection = DriverManager.getConnection("jdbc:mysql://" + URL, USERID, PASSWORD);
 
             }
             catch(ClassNotFoundException e) {
@@ -53,15 +53,15 @@ public class SQLSource {
                         Filter out the tables according to selected database or create a map<database_name, set<table_name>>
              */
             while (tables.next()) {
-//                String catalog = tables.getString("TABLE_CAT");
-//                String schema = tables.getString("TABLE_SCHEM");
                 String tableName = tables.getString("TABLE_NAME");
-                this.tables.add(tableName);
+//                String catalog = tables.getString("TABLE_CAT");
+//                String schema = tables.getString("TABLE_SCHEMA");
 //                try (ResultSet primaryKeys = meta.getPrimaryKeys(catalog, schema, tableName)) {
 //                    while (primaryKeys.next()) {
 //                        System.out.println("Primary key: " + primaryKeys.getString("COLUMN_NAME"));
 //                    }
 //                }
+                this.tables.add(tableName);
             }
         }
     }
@@ -69,4 +69,6 @@ public class SQLSource {
     public boolean hasTable(String tableName) {
         return this.tables.contains(tableName);
     }
+
+    public String getURL() {    return this.URL;    }
 }
