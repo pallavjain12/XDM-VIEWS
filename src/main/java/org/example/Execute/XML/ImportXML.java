@@ -7,10 +7,4 @@ public class ImportXML {
         pathToXML = null;
         isLocal = true;
     }
-
-    public void loadData() throws NoPathDefinedForXML {
-        if (pathToXML == null) throw new NoPathDefinedForXML();
-
-    }
-
 }
