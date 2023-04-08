@@ -1,0 +1,121 @@
+{
+  "name": "myView",
+  "source": [
+    {
+      "name": "market",
+      "type": "mysql",
+      "url": "localhost:3306/market",
+      "username": "root",
+      "password": "password"
+    },
+    {
+      "name": "shop",
+      "type": "mysql",
+      "url": "localhost:3306/market",
+      "username": "root",
+      "password": "password"
+    },
+    {
+      "name": "test",
+      "type": "json",
+      "url": "/home/albus/Documents/students.xml",
+      "local": true
+    },
+    {
+      "name": "pupils",
+      "type": "xml",
+      "url": "/home/albus/Documents/students.xml"
+    }
+  ],
+  "view": [
+    {
+      "name": "market_data",
+      "source": "market",
+      "table": "students",
+      "fields": [
+        {
+          "name": "first_name",
+          "selected": true,
+          "conditions": [
+            {
+              "operator": "==",
+              "value": "XDM"
+            },
+            {
+              "operator": "!=",
+              "value": "MDX"
+            }
+          ]
+        },
+        {
+          "name": "last_name",
+          "selected": true
+        },
+        {
+          "name": "email",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "name": "market_data",
+      "source": "market",
+      "table": "students",
+      "fields": [
+        {
+          "name": "first_name",
+          "selected": true,
+          "conditions": [
+            {
+              "operator": "==",
+              "value": "XDM"
+            },
+            {
+              "operator": "!=",
+              "value": "MDX"
+            }
+          ]
+        },
+        {
+          "name": "last_name",
+          "selected": true
+        },
+        {
+          "name": "email",
+          "selected": true
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "name": "all_students",
+      "type": "union",
+      "source": [
+        {
+          "name": "market_data"
+        },
+        {
+          "name": "shop_data"
+        },
+        {
+          "name": "test_data"
+        }
+      ]
+    },
+    {
+      "name": "student_courses",
+      "type": "join",
+      "source": [
+        {
+          "name": "students",
+          "on": "id"
+        },
+        {
+          "name": "course_id",
+          "on": "course_id"
+        }
+      ]
+    }
+  ]
+}
