@@ -26,14 +26,11 @@ public class SQLSource {
             try {
                 if (this.URL == null) throw new RuntimeException("No URL found for connection to database");
                 if (this.USERID == null || this.PASSWORD == null) throw new RuntimeException("Credential not found");
-                System.out.println("checkpoint1");
-                System.out.flush();
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 this.connection = DriverManager.getConnection("jdbc:mysql://" + URL, USERID, PASSWORD);
 
             }
             catch(ClassNotFoundException e) {
-                System.out.println("Driver class not found for sql jdbc driver");
                 throw new RuntimeException("Class \"com.mysql.cj.jdbc.Driver\" not dound" + e);
             }
             catch (SQLException e) {
