@@ -6,13 +6,13 @@ import org.example.View.View;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SQLView extends View {
     private final ArrayList<String> select;
     private final ArrayList<Condition> conditions;
     private String table;
     private String query;
-
     private SQLSource source;
 
     SQLView() {
@@ -20,6 +20,7 @@ public class SQLView extends View {
         this.query = null;
         this.select = new ArrayList<>();
         this.conditions = new ArrayList<>();
+        this.rows = new ArrayList<>();
     }
     public void addSource(SQLSource source) { this.source = source; }
 
@@ -34,7 +35,7 @@ public class SQLView extends View {
 
         if (source == null) throw new RuntimeException("No source defined for SQLView");
         if (table == null)  throw new RuntimeException("No table defined for SQLView");
-        if (!source.hasTable(this.table))   throw new RuntimeException("Table with name " + this.table + " not found at " + source.getURL());
+        if (!source.hasTable(table))   throw new RuntimeException("Table with name " + table + " not found at " + source.getURL());
         prepareStatement();
 
         Connection connection = source.getConnection();
@@ -43,10 +44,11 @@ public class SQLView extends View {
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnNumber = rsmd.getColumnCount();
         while(rs.next()) {
+            HashMap<String, String> tempMap = new HashMap<>();
             for (int i = 1; i <= columnNumber; i++) {
-                System.out.print(rs.getString(i) + " ");
+                tempMap.put(rsmd.getColumnName(i), rs.getString(i));
             }
-            System.out.println("");
+            rows.add(tempMap);
         }
     }
 
@@ -56,24 +58,24 @@ public class SQLView extends View {
             - How to add different conditions for same/ different fields.
      */
     private void prepareStatement() {
-        String query = "select";
+        StringBuilder query = new StringBuilder("select");
         if (this.select.size() != 0) {
             for (String s : this.select) {
-                query += (" " + s);
+                query.append(" ").append(s);
             }
         }
         else {
-            query += " *";
+            query.append(" *");
         }
-        query += " from " + table;
+        query.append(" from ").append(table);
         if (this.conditions.size() != 0) {
-            query += " where";
+            query.append(" where");
             for (Condition s : conditions) {
-                query += " " + s.getColumn() + " " + s.getOperator() + " " + s.getValue();
+                query.append(" ").append(s.getColumn()).append(" ").append(s.getOperator()).append(" ").append(s.getValue());
             }
         }
-        query += ";";
-        this.query = query;
+        query.append(";");
+        this.query = query.toString();
     }
 
     public void addCondition(Condition condition) { this.conditions.add(condition); }
@@ -85,8 +87,9 @@ public class SQLView extends View {
         SQLSource source = new SQLSource("localhost:3306/marketdb", "root", "password");
         obj.addSource(source);
         obj.addTable("dim_prod");
-        obj.addSelectColumn("prod_id");
+//        obj.addSelectColumn("product_category");
         obj.loadData();
+        obj.display();
     }
 }
 
