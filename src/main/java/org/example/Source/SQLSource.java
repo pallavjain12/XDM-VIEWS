@@ -11,13 +11,19 @@ public class SQLSource {
 
     private Set<String> tables;
     private Connection connection;
-    public SQLSource(String URL, String userid, String password) throws SQLException {
+    public SQLSource(String URL, String userid, String password) {
         this.URL = URL;
         this.USERID = userid;
         this.PASSWORD = password;
 
         tables = new HashSet<>();
-        storeDatabaseInfo();
+        try {
+            storeDatabaseInfo();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL exception occured while connecting sql database");
+        }
     }
 
     public Connection getConnection() {

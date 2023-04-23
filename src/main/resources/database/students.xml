@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<students>
+<database>
     <student>
         <first_name>Pallav</first_name>
         <last_name>Jain</last_name>
@@ -7,6 +7,13 @@
         <branch>cse</branch>
         <email>pallav.jain@iiitb.ac.in</email>>
         <mobile>8109629687</mobile>
+        <address>
+            <city name="Datia">
+                <population>2000</population>
+                <towns>4</towns>
+            </city>
+            <state>Madhya Pradesh</state>
+        </address>
     </student>
     <student>
         <first_name>Prashant</first_name>
@@ -15,6 +22,13 @@
         <branch>cse</branch>
         <email>prahant.kumar@iiitb.ac.in</email>>
         <mobile>7509977764</mobile>
+        <address>
+            <city name="gorakhpur">
+                <population>1000</population>
+                <towns>6</towns>
+            </city>
+            <state>Uttar Pradesh</state>
+        </address>
     </student>
     <student>
         <first_name>Prathviraj</first_name>
@@ -23,5 +37,12 @@
         <branch>cse</branch>
         <email>prathviraj.bn@iiitb.ac.in</email>>
         <mobile>99815915525</mobile>
+        <address>
+            <city name="Bangalore">
+                <population>5000</population>
+                <towns>5</towns>
+            </city>
+            <state>Karnataka</state>
+        </address>
     </student>
-</students>
+</database>

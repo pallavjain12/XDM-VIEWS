@@ -3,53 +3,77 @@ package org.example.View.SQLView;
 import org.example.Common.Condition;
 import org.example.Source.SQLSource;
 import org.example.View.View;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SQLView extends View {
-    private final ArrayList<String> select;
-    private final ArrayList<Condition> conditions;
+public class SQLView {
+    private ArrayList<HashMap<String, String>> rows;
+    private ArrayList<String> select;
+    private String conditions;
     private String table;
     private String query;
     private SQLSource source;
 
-    SQLView() {
+    private JSONArray dataRows;
+
+    public SQLView() {
         this.table = null;
         this.query = null;
         this.select = new ArrayList<>();
-        this.conditions = new ArrayList<>();
+        this.conditions = "";
         this.rows = new ArrayList<>();
+        this.dataRows = new JSONArray();
     }
-    public void addSource(SQLSource source) { this.source = source; }
+    public void addSource(SQLSource source) {
+        this.source = source;
+    }
 
-    public void addTable(String table) { this.table = table; }
+    public void addTable(String table) {
+        this.table = table;
+    }
 
     /*
         TODO:
          - check if table exits before executing query
      */
 
-    public void loadData() throws SQLException {
+    public void loadData() {
 
         if (source == null) throw new RuntimeException("No source defined for SQLView");
         if (table == null)  throw new RuntimeException("No table defined for SQLView");
         if (!source.hasTable(table))   throw new RuntimeException("Table with name " + table + " not found at " + source.getURL());
-        prepareStatement();
 
-        Connection connection = source.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(query);
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnNumber = rsmd.getColumnCount();
-        while(rs.next()) {
-            HashMap<String, String> tempMap = new HashMap<>();
-            for (int i = 1; i <= columnNumber; i++) {
-                tempMap.put(rsmd.getColumnName(i), rs.getString(i));
+        prepareStatement();
+        try {
+            Connection connection = source.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnNumber = rsmd.getColumnCount();
+            while(rs.next()) {
+                HashMap<String, String> tempMap = new HashMap<>();
+                JSONObject object = new JSONObject();
+                for (int i = 1; i <= columnNumber; i++) {
+                    object.put(rsmd.getColumnName(i), rs.getString(i));
+                    tempMap.put(rsmd.getColumnName(i), rs.getString(i));
+                }
+                dataRows.put(object);
+                rows.add(tempMap);
             }
-            rows.add(tempMap);
         }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(query);
+            throw new RuntimeException("Error occurred while connecting to SQL server " + e);
+        }
+    }
+
+    private JSONArray getJSONArray() {
+        return dataRows;
     }
 
     /*
@@ -68,17 +92,15 @@ public class SQLView extends View {
             query.append(" *");
         }
         query.append(" from ").append(table);
-        if (this.conditions.size() != 0) {
+        if (this.conditions.length() != 0) {
             query.append(" where");
-            for (Condition s : conditions) {
-                query.append(" ").append(s.getColumn()).append(" ").append(s.getOperator()).append(" ").append(s.getValue());
-            }
+                query.append(" ").append(conditions);
         }
         query.append(";");
         this.query = query.toString();
     }
 
-    public void addCondition(Condition condition) { this.conditions.add(condition); }
+    public void addCondition(String condition) { this.conditions = condition; }
 
     public void addSelectColumn(String column) { this.select.add(column); }
 
@@ -89,7 +111,6 @@ public class SQLView extends View {
         obj.addTable("dim_prod");
 //        obj.addSelectColumn("product_category");
         obj.loadData();
-        obj.display();
     }
 }
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xdmview name="myView">
+
+    <data>
+        <mysql url="localhost:3306/xdmviews" name="xdmviews" username="root" password="password" />
+<!--        <json url="./test.json" local="true" name="test" />-->
+        <xml url="/home/albus/DoNotTouchThis/XDM-VIEWS/src/main/resources/database/students.xml" local="true" name="pupils" />
+        <csv url="/home/albus/DoNotTouchThis/XDM-VIEWS/src/main/resources/database/csvdatabase.csv" local="true" name="people" />
+    </data>
+
+    <view>
+        <mysql_base name="students_data" source="xdmviews" table="students">
+            <field selected="true">first_name</field>
+            <field selected="false">last_name</field>
+            <field selected="true">email</field>
+<!--            <condition>first_name="tom" and last_name="jerry"</condition>-->
+        </mysql_base>
+
+        <mysql_base name="courses" source="xdmviews" table="courses">
+            <field selected="true">id</field>
+            <field selected="true">name</field>
+        </mysql_base>
+
+<!--        <json_base name="test_data" source="test">-->
+<!--            <field selected="true">first_name</field>-->
+<!--            <field selected="false">last_name</field>-->
+<!--            <field selected="true">email</field>-->
+<!--        </json_base>-->
+
+        <xml_base name="xml_data" source="pupils">
+            <field selected="true">first_name</field>
+            <field selected="true">last_name</field>
+            <condition>database/city/ward/name=ward1 and database/city/name=Bangalore</condition>
+        </xml_base>
+    </view>
+
+    <operation>
+        <union name="all_students">
+            <source>market_data</source>
+            <source>shop_data</source>
+            <source>test_data</source>
+        </union>
+
+        <join name="student_courses">
+            <source on="//ward/name" type="parent">all_students</source>
+            <source on="course_id" type="child">courses</source>
+        </join>
+        <join name="check2">
+            <source on="#roottag/#childtag/ward/name" type="parent">all_students</source>
+            <source on="course_id" type="child">courses</source>
+        </join>
+    </operation>
+</xdmview>

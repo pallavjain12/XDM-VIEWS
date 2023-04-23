@@ -16,14 +16,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class XMLView extends View {
+public class XMLView {
     private XMLSource source;
     private ArrayList<String> select;
     private ArrayList<Condition> conditions;
     public XMLView() {
         this.select = new ArrayList<>();
         this.conditions = new ArrayList<>();
-        this.rows = new ArrayList<>();
         this.source = null;
     }
 

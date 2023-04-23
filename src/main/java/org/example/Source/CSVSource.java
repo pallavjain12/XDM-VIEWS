@@ -2,11 +2,11 @@ package org.example.Source;
 
 import java.io.File;
 
-public class JSONSource {
+public class CSVSource {
     private String url;
-    boolean isLocal;
-    File file;
-    public JSONSource(String url, boolean isLocal) {
+    private boolean isLocal;
+    private File file;
+    public CSVSource(String url, boolean isLocal) {
         this.url = url;
         this.isLocal = isLocal;
         fetchFile();
@@ -19,10 +19,7 @@ public class JSONSource {
             else throw new RuntimeException("File not found at " + url);
         }
         else {
-            /*
-                TODO: Fetch file from url given, download it and return when asked for.
-             */
-            throw new RuntimeException("Download of file currently not supported. Please download the file locally and provide path to the file");
+            throw new RuntimeException("Online files currently not supported. Please download the file locally and provide path to the file");
         }
     }
 
