@@ -11,13 +11,19 @@ public class SQLSource {
 
     private Set<String> tables;
     private Connection connection;
-    public SQLSource(String URL, String userid, String password) throws SQLException {
+    public SQLSource(String URL, String userid, String password) {
         this.URL = URL;
         this.USERID = userid;
         this.PASSWORD = password;
 
         tables = new HashSet<>();
-        storeDatabaseInfo();
+        try {
+            storeDatabaseInfo();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL exception occured while connecting sql database");
+        }
     }
 
     public Connection getConnection() {
@@ -26,14 +32,11 @@ public class SQLSource {
             try {
                 if (this.URL == null) throw new RuntimeException("No URL found for connection to database");
                 if (this.USERID == null || this.PASSWORD == null) throw new RuntimeException("Credential not found");
-                System.out.println("checkpoint1");
-                System.out.flush();
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 this.connection = DriverManager.getConnection("jdbc:mysql://" + URL, USERID, PASSWORD);
 
             }
             catch(ClassNotFoundException e) {
-                System.out.println("Driver class not found for sql jdbc driver");
                 throw new RuntimeException("Class \"com.mysql.cj.jdbc.Driver\" not dound" + e);
             }
             catch (SQLException e) {
