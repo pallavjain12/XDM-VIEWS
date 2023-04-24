@@ -69,7 +69,7 @@ public class CSVView {
 
     public static void main(String[] args) throws IOException {
         CSVView view = new CSVView();
-        CSVSource source = new CSVSource("/home/albus/DoNotTouchThis/XDM-VIEWS/src/main/resources/database/csvdatabase.csv", true);
+        CSVSource source = new CSVSource("/home/albus/DoNotTouchThis/XDM-VIEWS/src/main/resources/database/student_courses.csv", true);
         view.addSource(source);
         view.loadData();
         view.display();

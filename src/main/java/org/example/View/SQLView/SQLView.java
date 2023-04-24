@@ -72,7 +72,7 @@ public class SQLView {
         }
     }
 
-    private JSONArray getJSONArray() {
+    public JSONArray getJSONArray() {
         return dataRows;
     }
 
@@ -84,8 +84,13 @@ public class SQLView {
     private void prepareStatement() {
         StringBuilder query = new StringBuilder("select");
         if (this.select.size() != 0) {
-            for (String s : this.select) {
-                query.append(" ").append(s);
+            for (int i = 0; i < this.select.size(); i++) {
+                if (i != select.size() - 1) {
+                    query.append(" ").append(select.get(i)).append(",");
+                }
+                else {
+                    query.append(" ").append(select.get(i));
+                }
             }
         }
         else {

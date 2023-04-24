@@ -1,0 +1,29 @@
+[
+  {
+    "first_name": "pallav",
+    "last_name": "jain",
+    "email": "pallavjain@iiitb.ac.in",
+    "id": "MT2022067",
+    "mobile": "8109629687",
+    "branch": "cse",
+    "dob": "1998-06-15"
+  },
+  {
+    "first_name": "prathviraj",
+    "last_name": "B N",
+    "email": "prathvi.bn@iiitb.ac.in",
+    "id": "MT2022150",
+    "mobile": "9429103945",
+    "branch": "ece",
+    "dob": "1998-06-16"
+  },
+  {
+    "first_name": "niraj",
+    "last_name": "lande",
+    "email": "niraj.lande@iiitb.ac.in",
+    "id": "MT2022065",
+    "mobile": "9292922922",
+    "branch": "ece",
+    "dob": "1999-04-21"
+  }
+]

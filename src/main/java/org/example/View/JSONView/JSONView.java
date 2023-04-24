@@ -10,6 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static org.example.Common.Condition.filterBasedOnCondition;
+import static org.example.Common.Condition.selectSelectedAttributes;
+
 public class JSONView {
     JSONSource source;
     ArrayList<String> select;
@@ -19,7 +22,7 @@ public class JSONView {
 
     public JSONView() {
         source = null;
-        select = null;
+        select = new ArrayList<>();
         conditions = null;
         JSONObject dataRows;
     }
@@ -36,17 +39,25 @@ public class JSONView {
         this.select.add(select);
     }
 
-    public void loadData() throws IOException  {
-        if (source == null) throw new RuntimeException("No source defined for JSON source");
-        StringBuilder sbr = new StringBuilder();
-        BufferedReader br = new BufferedReader(new FileReader(source.getFile()));
-        String temp = br.readLine();
-        while(temp != null) {
-            sbr.append(temp);
-            temp = br.readLine();
+    public void loadData() {
+        try {
+            if (source == null) throw new RuntimeException("No source defined for JSON view");
+            StringBuilder sbr = new StringBuilder();
+            BufferedReader br = new BufferedReader(new FileReader(source.getFile()));
+            String temp = br.readLine();
+            while(temp != null) {
+                sbr.append(temp);
+                temp = br.readLine();
+            }
+            dataRows = selectSelectedAttributes(filterBasedOnCondition(new JSONArray(sbr.toString()), this.conditions), this.select);
         }
-        dataRows = new JSONArray(sbr.toString());
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error occureed while reading json data" + e);
+        }
+
     }
+
     public JSONArray getJSONArray() {
         return dataRows;
     }

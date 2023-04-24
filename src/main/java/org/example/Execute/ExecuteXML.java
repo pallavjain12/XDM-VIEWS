@@ -158,10 +158,21 @@ public class ExecuteXML {
         if (!views.isNull("xml_base")) {
             JSONArray xmlArray = views.getJSONArray("xml_base");
             for (int i = 0; i < xmlArray.length(); i++) {
+
                 JSONObject object = xmlArray.getJSONObject(i);
                 if (!xmlSourceHashMap.containsKey(object.get("source").toString())) throw new RuntimeException("Source not found for view : " + object.get("name").toString());
                 XMLView view = new XMLView();
                 view.addSource(xmlSourceHashMap.get(object.get("source").toString()));
+
+                if (!object.isNull("condition")) view.addCondition(object.getString("condition"));
+
+                JSONArray field = object.getJSONArray("field");
+                for (int j = 0; j < field.length(); j++) {
+                    if (field.getJSONObject(j).get("selected").toString().equals("true")) view.addSelect(field.getJSONObject(j).get("content").toString());
+                }
+
+                view.loadData();
+                allViews.put(object.get("name").toString(), view.getJSONArray());
             }
         }
 
@@ -192,6 +203,7 @@ public class ExecuteXML {
                 }
 
                 jsonViewHashMap.put(object.get("name").toString(), view);
+                view.loadData();
                 allViews.put(object.get("name").toString(), view.getJSONArray());
             }
         }
@@ -200,7 +212,6 @@ public class ExecuteXML {
             JSONArray sqlArray = views.getJSONArray("mysql_base");
             for (int i = 0; i < sqlArray.length(); i++) {
                 JSONObject object = sqlArray.getJSONObject(i);
-
                 if (object.isNull("name"))  throw new RuntimeException("Name not found for a sql view");
                 if (!sourceAlreadyDeclared(object.get("source").toString()))  throw new RuntimeException("Source not found for view : " + object.get("name").toString());
                 if (viewNameAlreadyDeclared(object.get("name").toString())) throw new RuntimeException("Duplicate view name found : " + object.get("name").toString());
@@ -223,7 +234,7 @@ public class ExecuteXML {
 
                 sqlView.loadData();
 
-//                allViews.put(object.get("name").toString(), sqlView.getJSONArray());
+                allViews.put(object.get("name").toString(), sqlView.getJSONArray());
                 this.sqlViewHashMap.put(object.get("name").toString(), sqlView);
             }
         }
@@ -463,8 +474,8 @@ public class ExecuteXML {
             }
         }
     }
-    public Set<String> displayAllViews() {
-        return allViews.keySet();
+    public void displayAllViews() {
+        System.out.println(allViews.toString());
     }
 
     public void display(String viewName) {

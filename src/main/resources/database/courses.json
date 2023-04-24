@@ -1,0 +1,18 @@
+[
+  {
+    "id": "CS 301",
+    "name": "Algorithms and Data Structure"
+  },
+  {
+    "id": "EC 302",
+    "name": "Digital Logic"
+  },
+  {
+    "id": "EC 504",
+    "name": "VLSI"
+  },
+  {
+    "id": "EC 605",
+    "name": "Circuit Design"
+  }
+]
