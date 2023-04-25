@@ -473,6 +473,30 @@ public class ExecuteXML {
                 statements.getJSONObject("operation").put("join", arr);
             }
         }
+        if (!statements.getJSONObject("operation").isNull("union")) {
+            JSONArray unionsArray = statements.getJSONObject("operation").getJSONArray("union");
+            for (int i = 0; i < unionsArray.length(); i++) {
+                JSONObject unionObj = unionsArray.getJSONObject(i);
+                if (unionObj.isNull("source")) throw new RuntimeException("Please define source for union operation");
+                if (!(unionObj.get("source") instanceof JSONArray)) {
+                    JSONArray array = new JSONArray();
+                    array.put(unionObj.get("source"));
+                    unionObj.put("source", array);
+                }
+            }
+        }
+        if (!statements.getJSONObject("operation").isNull("join")) {
+            JSONArray joinsArray = statements.getJSONObject("operation").getJSONArray("join");
+            for (int i = 0; i < joinsArray.length(); i++) {
+                JSONObject unionObj = joinsArray.getJSONObject(i);
+                if (unionObj.isNull("source")) throw new RuntimeException("Please define source for union operation");
+                if (!(unionObj.get("source") instanceof JSONArray)) {
+                    JSONArray array = new JSONArray();
+                    array.put(unionObj.get("source"));
+                    unionObj.put("source", array);
+                }
+            }
+        }
     }
     public void displayAllViews() {
         System.out.println(allViews.toString());

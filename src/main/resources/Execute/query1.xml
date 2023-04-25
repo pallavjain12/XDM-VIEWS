@@ -16,6 +16,7 @@
             <field selected="true">last_name</field>
             <field selected="true">email</field>
             <field selected="true">id</field>
+            <condition>branch="cse"</condition>
         </mysql_base>
 
         <json_base name="students_json" source="students_list_json">
@@ -23,6 +24,7 @@
             <field selected="true">last_name</field>
             <field selected="true">email</field>
             <field selected="true">id</field>
+            <condition>branch=cse</condition>
         </json_base>
 
         <xml_base name="students_xml" source="students_list_xml">
@@ -30,6 +32,7 @@
             <field selected="true">last_name</field>
             <field selected="true">email</field>
             <field selected="true">id</field>
+            <condition>branch=cse</condition>
         </xml_base>
 
         <mysql_base name="courses_sql" source="xdmviews" table="courses">
@@ -64,9 +67,9 @@
             <source on="id" type="parent">all_students</source>
             <source on="student_id" type="child">student_courses_xml</source>
         </join>
-<!--        <join name="check2">-->
-<!--            <source on="#roottag/#childtag/ward/name" type="parent">all_students</source>-->
-<!--            <source on="course_id" type="child">courses</source>-->
-<!--        </join>-->
+        <join name="students_subject_name">
+            <source on="child_course_id" type="parent">student_courses</source>
+            <source on="id" type="child">all_courses</source>
+        </join>
     </operation>
 </xdmview>
