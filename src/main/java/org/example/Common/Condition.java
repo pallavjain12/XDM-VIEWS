@@ -27,7 +27,7 @@ public class Condition {
             JSONArray newArray = new JSONArray();
             for (int i = 0; i < array.length(); i++) {
                 JSONObject temp = array.getJSONObject(i);
-                if (temp.get(condition[0]).toString().equals(condition[1])) newArray.put(temp);
+                if (temp.get(condition[0]).toString().equalsIgnoreCase(condition[1])) newArray.put(temp);
             }
             return newArray;
         }

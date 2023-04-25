@@ -24,4 +24,8 @@
         <student_id>MT2022079</student_id>
         <course_id>CS 511</course_id>
     </student_course>
+    <student_course>
+        <student_id>MT2022090</student_id>
+        <course_id>AI 829</course_id>
+    </student_course>
 </student_courses>

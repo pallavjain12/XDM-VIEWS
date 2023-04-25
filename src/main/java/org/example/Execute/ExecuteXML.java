@@ -198,8 +198,8 @@ public class ExecuteXML {
                     }
                 }
 
-                if (!object.isNull("conditions")) {
-                    view.addConditions(object.get("conditions").toString());
+                if (!object.isNull("condition")) {
+                    view.addConditions(object.get("condition").toString());
                 }
 
                 jsonViewHashMap.put(object.get("name").toString(), view);

@@ -102,6 +102,7 @@ public class SQLView {
                 query.append(" ").append(conditions);
         }
         query.append(";");
+        System.out.println(query);
         this.query = query.toString();
     }
 
