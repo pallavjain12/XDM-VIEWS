@@ -57,13 +57,6 @@ public class SQLSource {
              */
             while (tables.next()) {
                 String tableName = tables.getString("TABLE_NAME");
-//                String catalog = tables.getString("TABLE_CAT");
-//                String schema = tables.getString("TABLE_SCHEMA");
-//                try (ResultSet primaryKeys = meta.getPrimaryKeys(catalog, schema, tableName)) {
-//                    while (primaryKeys.next()) {
-//                        System.out.println("Primary key: " + primaryKeys.getString("COLUMN_NAME"));
-//                    }
-//                }
                 this.tables.add(tableName);
             }
         }

@@ -16,13 +16,9 @@ import org.json.XML;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.SQLOutput;
-import java.util.HashMap;
+import java.io.FileReader;import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 
 public class ExecuteXML {
     File file;
@@ -38,7 +34,7 @@ public class ExecuteXML {
     JSONObject statements;
 
     HashMap<String, JSONArray> allViews;
-    ExecuteXML(String url) {
+    public ExecuteXML(String url) {
         this.url = url;
         statements = null;
         allViews = new HashMap<>();
@@ -62,12 +58,10 @@ public class ExecuteXML {
 
         // Convert to more read able format
         moreReadAbleFormat();
-        System.out.println("Converted XML file to more read able format");
         addSources();
         System.out.println("Added sources");
         addViews();
         System.out.println("added views");
-        System.out.println(allViews.toString());
         doOperations();
         System.out.println("Completed operations");
     }
@@ -83,13 +77,11 @@ public class ExecuteXML {
                 str+=line;
             }
             this.statements = XML.toJSONObject(str);
-            System.out.println(statements);
+
             this.filterStatements();
-            System.out.println("after filter" + statements.toString());
         }
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("current statements = " + statements.toString());
             throw new RuntimeException("Error occurred while reading file. " + e);
         }
 
@@ -504,10 +496,19 @@ public class ExecuteXML {
 
     public void display(String viewName) {
         if (allViews.containsKey(viewName)) {
-            System.out.println(allViews.get(viewName).toString());
+            System.out.println(allViews.get(viewName).toString(4));
         }
         else {
             System.out.println("View with name " + viewName + " not found.");
+        }
+    }
+
+    public void showAllViewName() {
+        System.out.println("\nFollowing views are available\n");
+        int count = 1;
+        for (String s : allViews.keySet()) {
+            System.out.println(count + ". " +s);
+            count += 1;
         }
     }
 

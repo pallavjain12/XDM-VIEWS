@@ -1,7 +1,7 @@
 {
   "name":"myView",
   "view":{
-    "xml_base":{
+    "xml_base":[{
       "condition":[
         "database/city/ward@name=ward1 and database/city/name=Bangalore",
         "database/city/ward/name=ward1 and database/city/name=Bangalore"
@@ -16,8 +16,8 @@
       ],
       "name":"xml_data",
       "source":"pupils"
-    },
-    "json_base":{
+    }],
+    "json_base":[{
       "field":[
         {
           "selected":true,
@@ -34,7 +34,7 @@
       ],
       "name":"test_data",
       "source":"test"
-    },
+    }],
     "mysql_base":[
       {
         "condition":"first_name=\"tom\" and last_name=\"jerry\" or email=\"tomandjerry@gmail.com\"",

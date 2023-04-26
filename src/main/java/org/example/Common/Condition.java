@@ -14,12 +14,13 @@ public class Condition {
             JSONArray newArray = new JSONArray();
             for (int i = 0; i < array.length(); i++) {
                 JSONObject temp = array.getJSONObject(i);
+                boolean checkFlag = false;
                 for (int j = 1; j < path.length - 1; j++) {
                     if (temp.isNull(path[j])) break;
                     temp = temp.getJSONObject(path[j]);
+                    if (j == path.length - 2) checkFlag = true;
                 }
-
-                if (temp.get(path[path.length - 1]).toString().equals(condition[1])) newArray.put(array.getJSONObject(i));
+                if (checkFlag && temp.get(path[path.length - 1]).toString().equals(condition[1])) newArray.put(array.getJSONObject(i));
             }
             return newArray;
         }
@@ -36,7 +37,6 @@ public class Condition {
     public static JSONArray selectSelectedAttributes(JSONArray array, ArrayList<String> selected) {
         JSONArray newArray = new JSONArray();
         if (array.length() == 0) return new JSONArray();
-        ArrayList<String> keys = new ArrayList<>(array.getJSONObject(0).keySet());
         for (int i = 0; i < array.length(); i++) {
             JSONObject dataRow = array.getJSONObject(i);
             JSONObject newRow = new JSONObject();

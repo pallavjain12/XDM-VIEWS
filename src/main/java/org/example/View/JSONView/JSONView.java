@@ -24,7 +24,7 @@ public class JSONView {
         source = null;
         select = new ArrayList<>();
         conditions = null;
-        JSONObject dataRows;
+        dataRows = new JSONArray();
     }
 
     public void addSource(JSONSource source) {

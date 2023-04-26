@@ -55,14 +55,11 @@ public class SQLView {
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnNumber = rsmd.getColumnCount();
             while(rs.next()) {
-                HashMap<String, String> tempMap = new HashMap<>();
                 JSONObject object = new JSONObject();
                 for (int i = 1; i <= columnNumber; i++) {
                     object.put(rsmd.getColumnName(i), rs.getString(i));
-                    tempMap.put(rsmd.getColumnName(i), rs.getString(i));
                 }
                 dataRows.put(object);
-                rows.add(tempMap);
             }
         }
         catch (Exception e) {
@@ -102,7 +99,6 @@ public class SQLView {
                 query.append(" ").append(conditions);
         }
         query.append(";");
-        System.out.println(query);
         this.query = query.toString();
     }
 
@@ -110,13 +106,18 @@ public class SQLView {
 
     public void addSelectColumn(String column) { this.select.add(column); }
 
+    public void display() {
+        System.out.println(dataRows.toString());
+    }
+
     public static void main(String[] args) throws SQLException {
         SQLView obj = new SQLView();
         SQLSource source = new SQLSource("localhost:3306/marketdb", "root", "password");
         obj.addSource(source);
         obj.addTable("dim_prod");
-//        obj.addSelectColumn("product_category");
+        obj.addSelectColumn("product_category");
         obj.loadData();
+        obj.display();
     }
 }
 
