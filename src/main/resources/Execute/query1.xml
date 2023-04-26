@@ -16,7 +16,7 @@
             <field selected="true">last_name</field>
             <field selected="true">email</field>
             <field selected="true">id</field>
-<!--            <condition>branch="cse"</condition>-->
+            <condition>branch="cse"</condition>
         </mysql_base>
 
         <json_base name="students_json" source="students_list_json">
@@ -25,8 +25,8 @@
             <field selected="true">email</field>
             <field selected="true">id</field>
             <field selected="true">address</field>
-<!--            <condition>branch="cse"</condition>-->
-<!--            <condition>/address/city=blr</condition>-->
+            <condition>branch="cse"</condition>
+            <condition>/address/city=blr</condition>
         </json_base>
 
         <xml_base name="students_xml" source="students_list_xml">
@@ -34,7 +34,7 @@
             <field selected="true">last_name</field>
             <field selected="true">email</field>
             <field selected="true">id</field>
-<!--            <condition>branch=cse</condition>-->
+            <condition>branch=cse</condition>
             <condition>/address/city=blr</condition>
         </xml_base>
 

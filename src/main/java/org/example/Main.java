@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        if (args.length != 0) {
+        if (args.length == 2) {
             if (args[0].equals("1")) {
                 ExecuteXML e = new ExecuteXML(args[1]);
                 e.execute();
